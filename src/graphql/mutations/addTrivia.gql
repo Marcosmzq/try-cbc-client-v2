@@ -1,0 +1,21 @@
+mutation AddTrivia(
+  $course_id: Int!
+  $isTrivia: Boolean!
+  $isFlashcard: Boolean!
+  $exam: ExamList!
+  $statement: String!
+  $feedback: String
+) {
+  createTrivia(
+    course_id: $course_id
+    createTriviaInput: {
+      isTrivia: $isTrivia
+      isFlashcard: $isFlashcard
+      exam: $exam
+      statement: $statement
+      feedback: $feedback
+    }
+  ) {
+    ...TriviaSnnipet
+  }
+}

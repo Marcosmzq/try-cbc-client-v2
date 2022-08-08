@@ -1,4 +1,5 @@
 import { Heading, Text } from "@chakra-ui/react";
+import { supportEmail } from "../../utils/supportEmail";
 
 interface LoginPageHeaderProps {}
 
@@ -6,7 +7,7 @@ export const LoginPageHeader: React.FC<LoginPageHeaderProps> = ({}) => {
   return (
     <>
       <Heading p={1} textAlign="center" as="h2" variant="h2">
-        Lorem ipsum dolor sit, amet consectetur adipisicing.
+        Muchas gracias por
         <Heading
           as="h2"
           variant="h2"
@@ -16,13 +17,13 @@ export const LoginPageHeader: React.FC<LoginPageHeaderProps> = ({}) => {
           px={2}
           py={1}
         >
-          Lorem ipsum
+          elegirnos
         </Heading>
-        Lorem ipsum dolor sit.
+        ahora aproba más fácil
       </Heading>
       <Text variant="subtitle1" textAlign="center" my={6}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non nisi iure
-        illum illo, asperiores error?
+        Podes darnos tu feedback para mejorar y darte el mejor servicio.{" "}
+        {supportEmail}
       </Text>
     </>
   );

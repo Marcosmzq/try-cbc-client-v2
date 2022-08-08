@@ -17,7 +17,7 @@ export const LandingPageCTAWithDesc: React.FC<
         color="white"
         w={["100%", "20ch"]}
       >
-        Boost your productivity, start use workflow today.
+        Potencia tu cursada, aproba más fácil.
       </Heading>
       <Text
         variant="body1"
@@ -25,10 +25,11 @@ export const LandingPageCTAWithDesc: React.FC<
         w={["100%", "60ch"]}
         textAlign="center"
       >
-        It’s time to take control of your books. Buy our software so you can
-        feel like you’re doing something productive.
+        Estudia desde cualquier lugar, dispositivo y en cualquier horario.
+        Sentite libre de aprender de una mejor forma, cuando, donde y como
+        quieras.
       </Text>
-      <Link to="/courses">
+      <Link to="/register">
         <Button
           as={motion.button}
           whileHover={{ scale: 1.1 }}
@@ -38,7 +39,7 @@ export const LandingPageCTAWithDesc: React.FC<
           size="lg"
           my={8}
         >
-          Singup free now!
+          Crea cuenta ahora
         </Button>
       </Link>
     </Center>

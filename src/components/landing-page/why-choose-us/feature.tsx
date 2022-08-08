@@ -1,34 +1,37 @@
 import { Flex, Heading, Text, Image } from "@chakra-ui/react";
 
-interface WhyChooseUsFeatureCardProps {}
+interface WhyChooseUsFeatureCardProps {
+  title: string;
+  desc: string;
+  imgSrc: string;
+}
 
-export const WhyChooseUsFeatureCard: React.FC<
-  WhyChooseUsFeatureCardProps
-> = ({}) => {
+export const WhyChooseUsFeatureCard: React.FC<WhyChooseUsFeatureCardProps> = ({
+  title,
+  desc,
+  imgSrc,
+}) => {
   return (
-    <Flex flexDir="column" border="1px" borderColor="gray.200" rounded="3xl">
+    <Flex flexDir="column">
       <Image
-        boxSize="250px"
-        src="/images/undraw_education.svg"
+        boxSize="350px"
+        src={imgSrc}
         alt="test"
         objectFit="contain"
         objectPosition="center"
+        p={3}
       />
       <Flex
         flexDir="column"
-        p={8}
+        p={[3, 6]}
         justify="center"
         bg="gray.100"
         roundedBottom="3xl"
       >
         <Heading as="h5" variant="h5" my={2}>
-          Begginer friendly
+          {title}
         </Heading>
-        <Text variant="body1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque veniam
-          alias magni totam. Reiciendis tempore laudantium amet mollitia fugit
-          vitae?
-        </Text>
+        <Text variant="body1">{desc}</Text>
       </Flex>
     </Flex>
   );

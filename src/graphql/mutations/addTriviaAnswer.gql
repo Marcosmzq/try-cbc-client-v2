@@ -1,0 +1,12 @@
+mutation AddTriviaAnswer(
+  $trivia_id: Int!
+  $statement: String!
+  $isTrue: Boolean!
+) {
+  createTriviaAnswer(
+    trivia_id: $trivia_id
+    createTriviasAnswerInput: { statement: $statement, isTrue: $isTrue }
+  ) {
+    ...TriviaAnswerSnnipet
+  }
+}

@@ -6,7 +6,7 @@ export const RegisterPageHeader: React.FC<RegisterPageHeaderProps> = ({}) => {
   return (
     <>
       <Heading p={1} textAlign="center" as="h2" variant="h2">
-        Lorem ipsum dolor sit, amet consectetur adipisicing.
+        Dale un nuevo
         <Heading
           as="h2"
           variant="h2"
@@ -16,13 +16,13 @@ export const RegisterPageHeader: React.FC<RegisterPageHeaderProps> = ({}) => {
           px={2}
           py={1}
         >
-          Lorem ipsum
+          enfoque
         </Heading>
-        Lorem ipsum dolor sit.
+        al CBC y disfrutalo más que nunca.
       </Heading>
       <Text variant="subtitle1" textAlign="center" my={6}>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non nisi iure
-        illum illo, asperiores error?
+        Crea una cuenta y mira todos los cursos disponibles que tenemos para
+        vos.
       </Text>
     </>
   );

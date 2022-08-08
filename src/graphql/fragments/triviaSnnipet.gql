@@ -1,0 +1,10 @@
+fragment TriviaSnnipet on Trivia {
+  id
+  created_at
+  updated_at
+  isTrivia
+  isFlashcard
+  statement
+  feedback
+  exam
+}

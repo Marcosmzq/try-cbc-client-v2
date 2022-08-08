@@ -637,7 +637,59 @@ export enum UserRole {
   PremiumUser = 'PREMIUM_USER'
 }
 
+export type CourseSnnipetFragment = { __typename?: 'Course', created_at: string, updated_at: string, id: number, name: string };
+
+export type TriviaAnswerSnnipetFragment = { __typename?: 'TriviasAnswer', id: number, created_at: string, updated_at: string, isTrue: boolean, statement: string };
+
+export type TriviaSnnipetFragment = { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, isTrivia: boolean, isFlashcard: boolean, statement: string, feedback?: string | null, exam: ExamList };
+
 export type UserSnnipetFragment = { __typename?: 'User', id: number, created_at: string, updated_at: string, username: string, email: string, role: UserRole };
+
+export type AddTriviaMutationVariables = Exact<{
+  course_id: Scalars['Int'];
+  isTrivia: Scalars['Boolean'];
+  isFlashcard: Scalars['Boolean'];
+  exam: ExamList;
+  statement: Scalars['String'];
+  feedback?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type AddTriviaMutation = { __typename?: 'Mutation', createTrivia: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, isTrivia: boolean, isFlashcard: boolean, statement: string, feedback?: string | null, exam: ExamList } };
+
+export type AddTriviaAnswerMutationVariables = Exact<{
+  trivia_id: Scalars['Int'];
+  statement: Scalars['String'];
+  isTrue: Scalars['Boolean'];
+}>;
+
+
+export type AddTriviaAnswerMutation = { __typename?: 'Mutation', createTriviaAnswer: { __typename?: 'TriviasAnswer', id: number, created_at: string, updated_at: string, isTrue: boolean, statement: string } };
+
+export type ChangePasswordMutationVariables = Exact<{
+  currentPassword: Scalars['String'];
+  newPassword: Scalars['String'];
+  confirmNewPassword: Scalars['String'];
+}>;
+
+
+export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword: string };
+
+export type ChangePasswordWithTokenMutationVariables = Exact<{
+  access_token: Scalars['String'];
+  newPassword: Scalars['String'];
+  confirmNewPassword: Scalars['String'];
+}>;
+
+
+export type ChangePasswordWithTokenMutation = { __typename?: 'Mutation', changePasswordWithToken: string };
+
+export type GetCheckoutInitPointMutationVariables = Exact<{
+  user_id: Scalars['Float'];
+}>;
+
+
+export type GetCheckoutInitPointMutation = { __typename?: 'Mutation', getInitPoint: string };
 
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
@@ -646,6 +698,13 @@ export type LoginMutationVariables = Exact<{
 
 
 export type LoginMutation = { __typename?: 'Mutation', loginUser: { __typename?: 'LoginUserResponse', access_token: string, user: { __typename?: 'User', id: number, created_at: string, updated_at: string, username: string, email: string, role: UserRole } } };
+
+export type SendRecoveryPasswordEmailMutationVariables = Exact<{
+  email: Scalars['String'];
+}>;
+
+
+export type SendRecoveryPasswordEmailMutation = { __typename?: 'Mutation', sendRecoveryPasswordEmail: string };
 
 export type SignupMutationVariables = Exact<{
   username: Scalars['String'];
@@ -657,6 +716,66 @@ export type SignupMutationVariables = Exact<{
 
 export type SignupMutation = { __typename?: 'Mutation', registerUser: { __typename?: 'LoginUserResponse', access_token: string, user: { __typename?: 'User', id: number, created_at: string, updated_at: string, username: string, email: string, role: UserRole } } };
 
+export type UpgradeAccountMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UpgradeAccountMutation = { __typename?: 'Mutation', upgradeCurrentUserAccount: string };
+
+export type GetAllCoursesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllCoursesQuery = { __typename?: 'Query', findAllCourses: Array<{ __typename?: 'Course', created_at: string, updated_at: string, id: number, name: string }> };
+
+export type GetCurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCurrentUserQuery = { __typename?: 'Query', findCurrentUser: { __typename?: 'User', id: number, created_at: string, updated_at: string, username: string, email: string, role: UserRole } };
+
+export type GetRandomFlashcardQueryVariables = Exact<{
+  exam?: InputMaybe<ExamList>;
+  course_id: Scalars['Int'];
+}>;
+
+
+export type GetRandomFlashcardQuery = { __typename?: 'Query', getRandomFlashcardByParams: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, isTrivia: boolean, isFlashcard: boolean, statement: string, feedback?: string | null, exam: ExamList, answers: Array<{ __typename?: 'TriviasAnswer', id: number, created_at: string, updated_at: string, isTrue: boolean, statement: string }>, course: { __typename?: 'Course', created_at: string, updated_at: string, id: number, name: string } } };
+
+export type GetRandomTriviaQueryVariables = Exact<{
+  exam?: InputMaybe<ExamList>;
+  course_id: Scalars['Int'];
+}>;
+
+
+export type GetRandomTriviaQuery = { __typename?: 'Query', getRandomTriviaByParams: { __typename?: 'Trivia', id: number, created_at: string, updated_at: string, isTrivia: boolean, isFlashcard: boolean, statement: string, feedback?: string | null, exam: ExamList, answers: Array<{ __typename?: 'TriviasAnswer', id: number, created_at: string, updated_at: string, isTrue: boolean, statement: string }>, course: { __typename?: 'Course', created_at: string, updated_at: string, id: number, name: string } } };
+
+export const CourseSnnipetFragmentDoc = gql`
+    fragment CourseSnnipet on Course {
+  created_at
+  updated_at
+  id
+  name
+}
+    `;
+export const TriviaAnswerSnnipetFragmentDoc = gql`
+    fragment TriviaAnswerSnnipet on TriviasAnswer {
+  id
+  created_at
+  updated_at
+  isTrue
+  statement
+}
+    `;
+export const TriviaSnnipetFragmentDoc = gql`
+    fragment TriviaSnnipet on Trivia {
+  id
+  created_at
+  updated_at
+  isTrivia
+  isFlashcard
+  statement
+  feedback
+  exam
+}
+    `;
 export const UserSnnipetFragmentDoc = gql`
     fragment UserSnnipet on User {
   id
@@ -667,6 +786,186 @@ export const UserSnnipetFragmentDoc = gql`
   role
 }
     `;
+export const AddTriviaDocument = gql`
+    mutation AddTrivia($course_id: Int!, $isTrivia: Boolean!, $isFlashcard: Boolean!, $exam: ExamList!, $statement: String!, $feedback: String) {
+  createTrivia(
+    course_id: $course_id
+    createTriviaInput: {isTrivia: $isTrivia, isFlashcard: $isFlashcard, exam: $exam, statement: $statement, feedback: $feedback}
+  ) {
+    ...TriviaSnnipet
+  }
+}
+    ${TriviaSnnipetFragmentDoc}`;
+export type AddTriviaMutationFn = Apollo.MutationFunction<AddTriviaMutation, AddTriviaMutationVariables>;
+
+/**
+ * __useAddTriviaMutation__
+ *
+ * To run a mutation, you first call `useAddTriviaMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddTriviaMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addTriviaMutation, { data, loading, error }] = useAddTriviaMutation({
+ *   variables: {
+ *      course_id: // value for 'course_id'
+ *      isTrivia: // value for 'isTrivia'
+ *      isFlashcard: // value for 'isFlashcard'
+ *      exam: // value for 'exam'
+ *      statement: // value for 'statement'
+ *      feedback: // value for 'feedback'
+ *   },
+ * });
+ */
+export function useAddTriviaMutation(baseOptions?: Apollo.MutationHookOptions<AddTriviaMutation, AddTriviaMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddTriviaMutation, AddTriviaMutationVariables>(AddTriviaDocument, options);
+      }
+export type AddTriviaMutationHookResult = ReturnType<typeof useAddTriviaMutation>;
+export type AddTriviaMutationResult = Apollo.MutationResult<AddTriviaMutation>;
+export type AddTriviaMutationOptions = Apollo.BaseMutationOptions<AddTriviaMutation, AddTriviaMutationVariables>;
+export const AddTriviaAnswerDocument = gql`
+    mutation AddTriviaAnswer($trivia_id: Int!, $statement: String!, $isTrue: Boolean!) {
+  createTriviaAnswer(
+    trivia_id: $trivia_id
+    createTriviasAnswerInput: {statement: $statement, isTrue: $isTrue}
+  ) {
+    ...TriviaAnswerSnnipet
+  }
+}
+    ${TriviaAnswerSnnipetFragmentDoc}`;
+export type AddTriviaAnswerMutationFn = Apollo.MutationFunction<AddTriviaAnswerMutation, AddTriviaAnswerMutationVariables>;
+
+/**
+ * __useAddTriviaAnswerMutation__
+ *
+ * To run a mutation, you first call `useAddTriviaAnswerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddTriviaAnswerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addTriviaAnswerMutation, { data, loading, error }] = useAddTriviaAnswerMutation({
+ *   variables: {
+ *      trivia_id: // value for 'trivia_id'
+ *      statement: // value for 'statement'
+ *      isTrue: // value for 'isTrue'
+ *   },
+ * });
+ */
+export function useAddTriviaAnswerMutation(baseOptions?: Apollo.MutationHookOptions<AddTriviaAnswerMutation, AddTriviaAnswerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddTriviaAnswerMutation, AddTriviaAnswerMutationVariables>(AddTriviaAnswerDocument, options);
+      }
+export type AddTriviaAnswerMutationHookResult = ReturnType<typeof useAddTriviaAnswerMutation>;
+export type AddTriviaAnswerMutationResult = Apollo.MutationResult<AddTriviaAnswerMutation>;
+export type AddTriviaAnswerMutationOptions = Apollo.BaseMutationOptions<AddTriviaAnswerMutation, AddTriviaAnswerMutationVariables>;
+export const ChangePasswordDocument = gql`
+    mutation ChangePassword($currentPassword: String!, $newPassword: String!, $confirmNewPassword: String!) {
+  changePassword(
+    changePasswordInput: {currentPassword: $currentPassword, newPassword: $newPassword, confirmNewPassword: $confirmNewPassword}
+  )
+}
+    `;
+export type ChangePasswordMutationFn = Apollo.MutationFunction<ChangePasswordMutation, ChangePasswordMutationVariables>;
+
+/**
+ * __useChangePasswordMutation__
+ *
+ * To run a mutation, you first call `useChangePasswordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useChangePasswordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [changePasswordMutation, { data, loading, error }] = useChangePasswordMutation({
+ *   variables: {
+ *      currentPassword: // value for 'currentPassword'
+ *      newPassword: // value for 'newPassword'
+ *      confirmNewPassword: // value for 'confirmNewPassword'
+ *   },
+ * });
+ */
+export function useChangePasswordMutation(baseOptions?: Apollo.MutationHookOptions<ChangePasswordMutation, ChangePasswordMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ChangePasswordMutation, ChangePasswordMutationVariables>(ChangePasswordDocument, options);
+      }
+export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswordMutation>;
+export type ChangePasswordMutationResult = Apollo.MutationResult<ChangePasswordMutation>;
+export type ChangePasswordMutationOptions = Apollo.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
+export const ChangePasswordWithTokenDocument = gql`
+    mutation ChangePasswordWithToken($access_token: String!, $newPassword: String!, $confirmNewPassword: String!) {
+  changePasswordWithToken(
+    recoveryPasswordWithToken: {access_token: $access_token, newPassword: $newPassword, confirmNewPassword: $confirmNewPassword}
+  )
+}
+    `;
+export type ChangePasswordWithTokenMutationFn = Apollo.MutationFunction<ChangePasswordWithTokenMutation, ChangePasswordWithTokenMutationVariables>;
+
+/**
+ * __useChangePasswordWithTokenMutation__
+ *
+ * To run a mutation, you first call `useChangePasswordWithTokenMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useChangePasswordWithTokenMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [changePasswordWithTokenMutation, { data, loading, error }] = useChangePasswordWithTokenMutation({
+ *   variables: {
+ *      access_token: // value for 'access_token'
+ *      newPassword: // value for 'newPassword'
+ *      confirmNewPassword: // value for 'confirmNewPassword'
+ *   },
+ * });
+ */
+export function useChangePasswordWithTokenMutation(baseOptions?: Apollo.MutationHookOptions<ChangePasswordWithTokenMutation, ChangePasswordWithTokenMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ChangePasswordWithTokenMutation, ChangePasswordWithTokenMutationVariables>(ChangePasswordWithTokenDocument, options);
+      }
+export type ChangePasswordWithTokenMutationHookResult = ReturnType<typeof useChangePasswordWithTokenMutation>;
+export type ChangePasswordWithTokenMutationResult = Apollo.MutationResult<ChangePasswordWithTokenMutation>;
+export type ChangePasswordWithTokenMutationOptions = Apollo.BaseMutationOptions<ChangePasswordWithTokenMutation, ChangePasswordWithTokenMutationVariables>;
+export const GetCheckoutInitPointDocument = gql`
+    mutation GetCheckoutInitPoint($user_id: Float!) {
+  getInitPoint(user_id: $user_id)
+}
+    `;
+export type GetCheckoutInitPointMutationFn = Apollo.MutationFunction<GetCheckoutInitPointMutation, GetCheckoutInitPointMutationVariables>;
+
+/**
+ * __useGetCheckoutInitPointMutation__
+ *
+ * To run a mutation, you first call `useGetCheckoutInitPointMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useGetCheckoutInitPointMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [getCheckoutInitPointMutation, { data, loading, error }] = useGetCheckoutInitPointMutation({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useGetCheckoutInitPointMutation(baseOptions?: Apollo.MutationHookOptions<GetCheckoutInitPointMutation, GetCheckoutInitPointMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<GetCheckoutInitPointMutation, GetCheckoutInitPointMutationVariables>(GetCheckoutInitPointDocument, options);
+      }
+export type GetCheckoutInitPointMutationHookResult = ReturnType<typeof useGetCheckoutInitPointMutation>;
+export type GetCheckoutInitPointMutationResult = Apollo.MutationResult<GetCheckoutInitPointMutation>;
+export type GetCheckoutInitPointMutationOptions = Apollo.BaseMutationOptions<GetCheckoutInitPointMutation, GetCheckoutInitPointMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   loginUser(loginUserInput: {email: $email, password: $password}) {
@@ -704,6 +1003,37 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const SendRecoveryPasswordEmailDocument = gql`
+    mutation SendRecoveryPasswordEmail($email: String!) {
+  sendRecoveryPasswordEmail(email: $email)
+}
+    `;
+export type SendRecoveryPasswordEmailMutationFn = Apollo.MutationFunction<SendRecoveryPasswordEmailMutation, SendRecoveryPasswordEmailMutationVariables>;
+
+/**
+ * __useSendRecoveryPasswordEmailMutation__
+ *
+ * To run a mutation, you first call `useSendRecoveryPasswordEmailMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSendRecoveryPasswordEmailMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [sendRecoveryPasswordEmailMutation, { data, loading, error }] = useSendRecoveryPasswordEmailMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useSendRecoveryPasswordEmailMutation(baseOptions?: Apollo.MutationHookOptions<SendRecoveryPasswordEmailMutation, SendRecoveryPasswordEmailMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SendRecoveryPasswordEmailMutation, SendRecoveryPasswordEmailMutationVariables>(SendRecoveryPasswordEmailDocument, options);
+      }
+export type SendRecoveryPasswordEmailMutationHookResult = ReturnType<typeof useSendRecoveryPasswordEmailMutation>;
+export type SendRecoveryPasswordEmailMutationResult = Apollo.MutationResult<SendRecoveryPasswordEmailMutation>;
+export type SendRecoveryPasswordEmailMutationOptions = Apollo.BaseMutationOptions<SendRecoveryPasswordEmailMutation, SendRecoveryPasswordEmailMutationVariables>;
 export const SignupDocument = gql`
     mutation Signup($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
   registerUser(
@@ -745,3 +1075,189 @@ export function useSignupMutation(baseOptions?: Apollo.MutationHookOptions<Signu
 export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
+export const UpgradeAccountDocument = gql`
+    mutation UpgradeAccount {
+  upgradeCurrentUserAccount
+}
+    `;
+export type UpgradeAccountMutationFn = Apollo.MutationFunction<UpgradeAccountMutation, UpgradeAccountMutationVariables>;
+
+/**
+ * __useUpgradeAccountMutation__
+ *
+ * To run a mutation, you first call `useUpgradeAccountMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpgradeAccountMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [upgradeAccountMutation, { data, loading, error }] = useUpgradeAccountMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUpgradeAccountMutation(baseOptions?: Apollo.MutationHookOptions<UpgradeAccountMutation, UpgradeAccountMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpgradeAccountMutation, UpgradeAccountMutationVariables>(UpgradeAccountDocument, options);
+      }
+export type UpgradeAccountMutationHookResult = ReturnType<typeof useUpgradeAccountMutation>;
+export type UpgradeAccountMutationResult = Apollo.MutationResult<UpgradeAccountMutation>;
+export type UpgradeAccountMutationOptions = Apollo.BaseMutationOptions<UpgradeAccountMutation, UpgradeAccountMutationVariables>;
+export const GetAllCoursesDocument = gql`
+    query GetAllCourses {
+  findAllCourses {
+    ...CourseSnnipet
+  }
+}
+    ${CourseSnnipetFragmentDoc}`;
+
+/**
+ * __useGetAllCoursesQuery__
+ *
+ * To run a query within a React component, call `useGetAllCoursesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllCoursesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllCoursesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllCoursesQuery(baseOptions?: Apollo.QueryHookOptions<GetAllCoursesQuery, GetAllCoursesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllCoursesQuery, GetAllCoursesQueryVariables>(GetAllCoursesDocument, options);
+      }
+export function useGetAllCoursesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllCoursesQuery, GetAllCoursesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllCoursesQuery, GetAllCoursesQueryVariables>(GetAllCoursesDocument, options);
+        }
+export type GetAllCoursesQueryHookResult = ReturnType<typeof useGetAllCoursesQuery>;
+export type GetAllCoursesLazyQueryHookResult = ReturnType<typeof useGetAllCoursesLazyQuery>;
+export type GetAllCoursesQueryResult = Apollo.QueryResult<GetAllCoursesQuery, GetAllCoursesQueryVariables>;
+export const GetCurrentUserDocument = gql`
+    query GetCurrentUser {
+  findCurrentUser {
+    ...UserSnnipet
+  }
+}
+    ${UserSnnipetFragmentDoc}`;
+
+/**
+ * __useGetCurrentUserQuery__
+ *
+ * To run a query within a React component, call `useGetCurrentUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCurrentUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCurrentUserQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetCurrentUserQuery(baseOptions?: Apollo.QueryHookOptions<GetCurrentUserQuery, GetCurrentUserQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCurrentUserQuery, GetCurrentUserQueryVariables>(GetCurrentUserDocument, options);
+      }
+export function useGetCurrentUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCurrentUserQuery, GetCurrentUserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCurrentUserQuery, GetCurrentUserQueryVariables>(GetCurrentUserDocument, options);
+        }
+export type GetCurrentUserQueryHookResult = ReturnType<typeof useGetCurrentUserQuery>;
+export type GetCurrentUserLazyQueryHookResult = ReturnType<typeof useGetCurrentUserLazyQuery>;
+export type GetCurrentUserQueryResult = Apollo.QueryResult<GetCurrentUserQuery, GetCurrentUserQueryVariables>;
+export const GetRandomFlashcardDocument = gql`
+    query GetRandomFlashcard($exam: ExamList, $course_id: Int!) {
+  getRandomFlashcardByParams(exam: $exam, course_id: $course_id) {
+    ...TriviaSnnipet
+    answers {
+      ...TriviaAnswerSnnipet
+    }
+    course {
+      ...CourseSnnipet
+    }
+  }
+}
+    ${TriviaSnnipetFragmentDoc}
+${TriviaAnswerSnnipetFragmentDoc}
+${CourseSnnipetFragmentDoc}`;
+
+/**
+ * __useGetRandomFlashcardQuery__
+ *
+ * To run a query within a React component, call `useGetRandomFlashcardQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRandomFlashcardQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRandomFlashcardQuery({
+ *   variables: {
+ *      exam: // value for 'exam'
+ *      course_id: // value for 'course_id'
+ *   },
+ * });
+ */
+export function useGetRandomFlashcardQuery(baseOptions: Apollo.QueryHookOptions<GetRandomFlashcardQuery, GetRandomFlashcardQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRandomFlashcardQuery, GetRandomFlashcardQueryVariables>(GetRandomFlashcardDocument, options);
+      }
+export function useGetRandomFlashcardLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRandomFlashcardQuery, GetRandomFlashcardQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRandomFlashcardQuery, GetRandomFlashcardQueryVariables>(GetRandomFlashcardDocument, options);
+        }
+export type GetRandomFlashcardQueryHookResult = ReturnType<typeof useGetRandomFlashcardQuery>;
+export type GetRandomFlashcardLazyQueryHookResult = ReturnType<typeof useGetRandomFlashcardLazyQuery>;
+export type GetRandomFlashcardQueryResult = Apollo.QueryResult<GetRandomFlashcardQuery, GetRandomFlashcardQueryVariables>;
+export const GetRandomTriviaDocument = gql`
+    query GetRandomTrivia($exam: ExamList, $course_id: Int!) {
+  getRandomTriviaByParams(exam: $exam, course_id: $course_id) {
+    ...TriviaSnnipet
+    answers {
+      ...TriviaAnswerSnnipet
+    }
+    course {
+      ...CourseSnnipet
+    }
+  }
+}
+    ${TriviaSnnipetFragmentDoc}
+${TriviaAnswerSnnipetFragmentDoc}
+${CourseSnnipetFragmentDoc}`;
+
+/**
+ * __useGetRandomTriviaQuery__
+ *
+ * To run a query within a React component, call `useGetRandomTriviaQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRandomTriviaQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetRandomTriviaQuery({
+ *   variables: {
+ *      exam: // value for 'exam'
+ *      course_id: // value for 'course_id'
+ *   },
+ * });
+ */
+export function useGetRandomTriviaQuery(baseOptions: Apollo.QueryHookOptions<GetRandomTriviaQuery, GetRandomTriviaQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetRandomTriviaQuery, GetRandomTriviaQueryVariables>(GetRandomTriviaDocument, options);
+      }
+export function useGetRandomTriviaLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRandomTriviaQuery, GetRandomTriviaQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetRandomTriviaQuery, GetRandomTriviaQueryVariables>(GetRandomTriviaDocument, options);
+        }
+export type GetRandomTriviaQueryHookResult = ReturnType<typeof useGetRandomTriviaQuery>;
+export type GetRandomTriviaLazyQueryHookResult = ReturnType<typeof useGetRandomTriviaLazyQuery>;
+export type GetRandomTriviaQueryResult = Apollo.QueryResult<GetRandomTriviaQuery, GetRandomTriviaQueryVariables>;

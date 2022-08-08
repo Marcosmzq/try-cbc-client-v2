@@ -2,6 +2,7 @@ import { VStack, Divider, Button } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/userAuth";
 import { useSignupMutation } from "../../graphql/generated/graphql";
 import { emailRegExp } from "../../utils/emailRegExp";
@@ -17,6 +18,7 @@ type FormData = {
 interface RegisterFormProps {}
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
+  const history = useHistory();
   const { login } = useContext(AuthContext);
   const [mutationErrors, setMutationErrors] = useState<String[]>([]);
   const {
@@ -44,7 +46,10 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
     reset();
   };
   useEffect(() => {
-    if (data) login(data.registerUser.access_token);
+    if (data) {
+      login(data.registerUser.access_token);
+      history.push("/courses");
+    }
   }, [data]);
 
   return (

@@ -1,0 +1,5 @@
+query GetAllCourses {
+  findAllCourses {
+    ...CourseSnnipet
+  }
+}

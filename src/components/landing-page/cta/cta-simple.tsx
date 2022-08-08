@@ -26,6 +26,7 @@ export const LandingPageCTASimple: React.FC<
           whileTap={{ scale: 0.9 }}
           w={["100%", "auto"]}
           variant="secondaryOutline"
+          size="lg"
         >
           Start now
         </Button>

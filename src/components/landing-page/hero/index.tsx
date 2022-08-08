@@ -22,7 +22,7 @@ export const LandingPageHero: React.FC<LandingPageHeroProps> = ({}) => {
         height="100vh"
         objectFit="fill"
         objectPosition="center"
-        src="/images/undraw_education.svg"
+        src="/images/trivia-mockup.png"
         alt="Web preview"
         display={["none", "block"]}
       />

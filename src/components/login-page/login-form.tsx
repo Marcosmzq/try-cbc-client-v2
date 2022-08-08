@@ -2,6 +2,7 @@ import { VStack, Divider, Button } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/userAuth";
 import { useLoginMutation } from "../../graphql/generated/graphql";
 import { emailRegExp } from "../../utils/emailRegExp";
@@ -16,6 +17,7 @@ interface LoginFormProps {}
 
 export const LoginForm: React.FC<LoginFormProps> = ({}) => {
   const { login } = useContext(AuthContext);
+  const history = useHistory();
   const [mutationErrors, setMutationErrors] = useState<String[]>([]);
 
   const {
@@ -41,7 +43,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
     reset();
   };
   useEffect(() => {
-    if (data) login(data.loginUser.access_token);
+    if (data) {
+      login(data.loginUser.access_token);
+      history.push("/courses");
+    }
   }, [data]);
 
   return (

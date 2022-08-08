@@ -1,3 +1,4 @@
+import { NavBar } from "../nav-bar";
 import { LandingPageCTASimple } from "./cta/cta-simple";
 import { LandingPageCTAWithDesc } from "./cta/cta-with-desc";
 import { LandingPageFAQSection } from "./faq";
@@ -10,12 +11,11 @@ interface LandingPageProps {}
 export const LandingPage: React.FC<LandingPageProps> = ({}) => {
   return (
     <>
+      <NavBar />
       <LandingPageHero />
       <LandingPageOurFeaturesSection />
-      <LandingPageCTAWithDesc />
       <LandingPageWhyChooseUsSection />
-      <LandingPageFAQSection />
-      <LandingPageCTASimple />
+      <LandingPageCTAWithDesc />
     </>
   );
 };

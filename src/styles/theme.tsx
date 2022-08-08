@@ -5,7 +5,7 @@ import { Button } from "./components/button";
 
 export const theme = extendTheme({
   colors: {
-    primary: "#7e22ce",
+    primary: "#000",
     secondary: "#4f46e5",
     terceary: "#485BFF",
   },

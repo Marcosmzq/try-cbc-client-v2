@@ -1,0 +1,11 @@
+query GetRandomFlashcard($exam: ExamList, $course_id: Int!) {
+  getRandomFlashcardByParams(exam: $exam, course_id: $course_id) {
+    ...TriviaSnnipet
+    answers {
+      ...TriviaAnswerSnnipet
+    }
+    course {
+      ...CourseSnnipet
+    }
+  }
+}

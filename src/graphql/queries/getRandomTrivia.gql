@@ -1,0 +1,11 @@
+query GetRandomTrivia($exam: ExamList, $course_id: Int!) {
+  getRandomTriviaByParams(exam: $exam, course_id: $course_id) {
+    ...TriviaSnnipet
+    answers {
+      ...TriviaAnswerSnnipet
+    }
+    course {
+      ...CourseSnnipet
+    }
+  }
+}

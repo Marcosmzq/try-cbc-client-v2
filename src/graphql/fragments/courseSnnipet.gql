@@ -1,0 +1,6 @@
+fragment CourseSnnipet on Course {
+  created_at
+  updated_at
+  id
+  name
+}

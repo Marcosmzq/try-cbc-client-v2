@@ -15,9 +15,9 @@ export const HeroContent: React.FC<HeroContentProps> = ({}) => {
       align="center"
       mb={12}
     >
-      <Text variant="badgeWithBg">For students of CBC</Text>
+      <Text variant="badgeWithBg">Para estudiantes del CBC</Text>
       <Heading p={1} textAlign="center" as="h1" variant="h1">
-        Nothing great is made
+        Una nueva forma de
         <Heading
           as="h1"
           variant="h1"
@@ -27,9 +27,9 @@ export const HeroContent: React.FC<HeroContentProps> = ({}) => {
           px={2}
           py={1}
         >
-          alone
+          aprobar
         </Heading>
-        let us accompanish you.
+        el CBC fácil.
       </Heading>
       <Text
         textAlign="center"
@@ -39,11 +39,11 @@ export const HeroContent: React.FC<HeroContentProps> = ({}) => {
         w={["100%", "60ch"]}
         wordBreak="break-word"
       >
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-        beatae minus consequatur culpa. Assumenda molestias aliquam veritatis
-        sit quos perferendis.
+        tryCBC es una plataforma que ofrece las herramientas que necesitas para
+        estudiar, practicar y aprobar el CBC de forma MUY FÁCIL. No más
+        complicaciones.
       </Text>
-      <Link to="/courses">
+      <Link to="/register">
         <Button
           as={motion.button}
           whileHover={{ scale: 1.1 }}
@@ -52,7 +52,7 @@ export const HeroContent: React.FC<HeroContentProps> = ({}) => {
           variant="primarySolid"
           rightIcon={<ArrowRightIcon />}
         >
-          Start now
+          Comenzar ya
         </Button>
       </Link>
     </Flex>
