@@ -27,12 +27,12 @@ export const PrincingSectionDefault: React.FC<PrincingSectionDefaultProps> = ({
       py={[8, 16]}
       m={[2, 4]}
     >
-      <Flex flexDir={["column", "row"]} justify="space-between" align="center">
+      <Flex flexDir={["column"]} justify="space-between" align="center">
         <Flex flexDir="column">
           <Heading
             as="h3"
             variant="h3"
-            textAlign={["center", "start"]}
+            textAlign={["center"]}
             color="secondary"
           >
             Todo lo que necesitas para aprobar por solo{" "}
@@ -47,7 +47,7 @@ export const PrincingSectionDefault: React.FC<PrincingSectionDefaultProps> = ({
               $4999
             </Heading>
           </Heading>
-          <Text variant="subtitle2" my={[8, 4]}>
+          <Text variant="subtitle2" my={[8, 4]} textAlign={["center"]}>
             El pago incluye acceso a TODOS los cursos disponibles y el contenido
             que se agrege a futuro. Usamos MercadoPago para realizar los cobros,
             para que te sientas seguro.
