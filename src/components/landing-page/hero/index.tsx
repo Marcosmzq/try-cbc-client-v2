@@ -24,26 +24,6 @@ export const LandingPageHero: React.FC<LandingPageHeroProps> = ({}) => {
         objectPosition="center"
         src="/images/trivia-mockup.png"
         alt="Web preview"
-        display={["none", "block"]}
-      />
-
-      <Image
-        width="100vw"
-        height="100vh"
-        objectFit="fill"
-        objectPosition="center"
-        src="/images/undraw_education.svg"
-        alt="Web preview"
-        display={["block", "none"]}
-      />
-      <Image
-        width="100vw"
-        height="100vh"
-        objectFit="fill"
-        objectPosition="center"
-        src="/images/undraw_education.svg"
-        alt="Web preview"
-        display={["block", "none"]}
       />
     </Flex>
   );
