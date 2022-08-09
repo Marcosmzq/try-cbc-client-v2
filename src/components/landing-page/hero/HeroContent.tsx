@@ -15,7 +15,9 @@ export const HeroContent: React.FC<HeroContentProps> = ({}) => {
       align="center"
       mb={12}
     >
-      <Text variant="badgeWithBg">Para estudiantes del CBC</Text>
+      <Text variant="badgeWithBg" textAlign="center" p={3}>
+        Para estudiantes del CBC
+      </Text>
       <Heading p={1} textAlign="center" as="h1" variant="h1">
         Una nueva forma de
         <Heading
